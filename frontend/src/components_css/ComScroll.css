@@ -1,0 +1,95 @@
+.companies-section {
+  padding: 40px 20px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  /* background-color: #010120;  */
+   background:
+    radial-gradient(circle at top, rgba(40,80,160,0.18), transparent 55%),
+    #000;
+}
+
+.companies-section .title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #fff; /* white text for visibility */
+}
+
+.companies-section .title span {
+  flex: 1;
+  height: 2px;
+  background-color: #fff; /* white divider lines */
+  display: block;
+}
+
+.slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(250px * 18); /* 9 logos * 2 */
+  animation: scroll 20s linear infinite;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 150px; /* width of each logo */
+  padding: 10px;
+}
+
+.slide img {
+  max-width: 100px; /* smaller logos */
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/* Automatic scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .slide {
+    flex: 0 0 120px;
+  }
+
+  .slide img {
+    max-width: 70px;
+    max-height: 40px;
+  }
+
+  .companies-section .title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .slide {
+    flex: 0 0 90px;
+    padding: 5px;
+  }
+
+  .slide img {
+    max-width: 60px;
+    max-height: 35px;
+  }
+
+  .companies-section .title {
+    font-size: 18px;
+  }
+}

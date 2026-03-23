@@ -1,0 +1,159 @@
+/* ------------------------------
+   SkillOrbit Footer (Final Clean Version)
+------------------------------ */
+
+.so-footer {
+  background: #0c0f1d;
+  color: #e5e5e5;
+  padding: 60px 40px 30px;
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------- GRID LAYOUT ---------- */
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 50px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* ---------- COLUMN STYLES ---------- */
+.footer-col {
+  line-height: 1.7;
+}
+
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.brand-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-left: 10px;
+  position: relative;
+  top: -18px;
+  color: #fff;
+}
+
+/* ---------- TEXT ---------- */
+.footer-tagline {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-desc,
+.footer-address,
+.footer-contact {
+  color: #bfc3d4;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* clickable links */
+.footer-contact a {
+  color: #4db5ff;
+  text-decoration: none;
+}
+
+/* ---------- HEADINGS ---------- */
+.footer-col h3 {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* ---------- LIST ---------- */
+.footer-col ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+  color: #ccd2e3;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-col ul li:hover {
+  color: #4db5ff;
+}
+
+/* ---------- SOCIAL ICONS ---------- */
+.footer-social {
+  margin-top: 15px;
+}
+
+.footer-social a {
+  font-size: 18px;
+  margin-right: 14px;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: #4db5ff;
+}
+
+/* ---------- BOTTOM COPYRIGHT ---------- */
+.footer-bottom {
+  text-align: center;
+  padding-top: 25px;
+  margin-top: 50px;
+  border-top: 1px solid #1e2233;
+  font-size: 14px;
+  color: #9a9fb5;
+}
+
+/* ------------------------------
+   Responsive Design 
+------------------------------ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .so-footer {
+    padding: 40px 20px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .brand-title {
+    top: -10px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .brand-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brand-title {
+    font-size: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+}

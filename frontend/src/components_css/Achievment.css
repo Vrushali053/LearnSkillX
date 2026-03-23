@@ -1,0 +1,159 @@
+/* ================= SECTION ================= */
+
+.achievement {
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  padding: 80px 20px;
+  color: #ffffff;
+}
+
+.achievement-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+/* ================= BADGE ================= */
+
+.achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  margin-bottom: 24px;
+}
+
+.badge-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #60a5fa;
+  stroke-width: 2;
+}
+
+/* ================= HEADING ================= */
+
+.achievement-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.achievement-title span {
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= SUBTITLE ================= */
+
+.achievement-subtitle {
+  font-size: 16px;
+  color: #94a3b8;
+  max-width: 720px;
+  margin: 0 auto 52px;
+  line-height: 1.6;
+}
+
+/* ================= GRID ================= */
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+/* ================= CARD ================= */
+
+.achievement-card {
+  background: linear-gradient(180deg, #020617, #020617) padding-box,
+    linear-gradient(135deg, #1e293b, #0f172a) border-box;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 36px 24px;
+  transition: all 0.35s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+.achievement-card h3 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #e5e7eb;
+}
+
+.achievement-card p {
+  font-size: 15px;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* ================= ICON CIRCLE ================= */
+
+.icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.icon-circle svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+/* ================= COLORS ================= */
+
+.green { color: #22c55e; }
+.orange { color: #f97316; }
+.purple { color: #a855f7; }
+.blue { color: #3b82f6; }
+.yellow { color: #facc15; }
+.cyan { color: #22d3ee; }
+.pink { color: #ec4899; }
+.gold { color: #fbbf24; }
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+  .achievement-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .achievement-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .achievement {
+    padding: 60px 16px;
+  }
+
+  .achievement-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .achievement-title {
+    font-size: 28px;
+  }
+
+  .achievement-card h3 {
+    font-size: 26px;
+  }
+}

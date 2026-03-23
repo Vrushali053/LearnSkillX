@@ -1,0 +1,101 @@
+/* ================= CTA WRAPPER ================= */
+
+.community-cta {
+  padding: 50px 20px;
+  background: #020617; /* page background */
+}
+
+/* ================= CTA CARD ================= */
+
+.community-cta-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 40px;
+  border-radius: 28px;
+  text-align: center;
+
+  /* Skillo-style subtle gradient */
+  background: linear-gradient(
+    135deg,
+    #020617 0%,
+    #020617 40%,
+    #1e1b4b 100%
+  );
+
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7);
+}
+
+/* ================= TEXT ================= */
+
+.community-cta h2 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.community-cta p {
+  font-size: 16px;
+  color: #94a3b8;
+  margin-bottom: 40px;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ================= BUTTON ================= */
+
+.community-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+
+  /* Button gradient exactly like Skillo */
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+
+  transition: all 0.3s ease;
+}
+
+.community-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(34, 197, 94, 0.35);
+}
+
+.btn-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: white;
+  stroke-width: 2;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .community-cta-container {
+    padding: 50px 24px;
+    border-radius: 22px;
+  }
+
+  .community-cta h2 {
+    font-size: 28px;
+  }
+
+  .community-cta p {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .community-btn {
+    font-size: 15px;
+    padding: 12px 24px;
+  }
+}

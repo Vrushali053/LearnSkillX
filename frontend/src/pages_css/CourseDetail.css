@@ -1,0 +1,11 @@
+.course-detail {
+  text-align: center;
+  padding: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .course-detail {
+    padding: 20px;
+  }
+}

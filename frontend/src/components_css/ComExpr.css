@@ -1,0 +1,159 @@
+/* ===== SECTION ===== */
+.expr {
+  background:
+    radial-gradient(circle at top, rgba(40,80,160,0.18), transparent 55%),
+    #000;
+  padding: 90px 20px;
+  color: #fff;
+}
+
+.expr-wrapper {
+  max-width: 1320px;
+  margin: auto;
+}
+
+/* ===== HEADER ===== */
+.expr-head {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.expr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(80,140,255,0.15);
+  color: #6aa8ff;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.crown {
+  font-size: 16px;
+}
+
+/* ===== TITLE ===== */
+.expr-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.expr-title span {
+  color: #5aa2ff;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00c6ff, #4f7cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== SUBTITLE ===== */
+.expr-subtitle {
+  max-width: 720px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #b8c2d6;
+}
+
+/* ===== GRID ===== */
+.expr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+/* ===== CARD ===== */
+.expr-card {
+  height: 260px;
+  padding: 34px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #0b1430, #070c1b);
+  border: 1px solid rgba(120,160,255,0.12);
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.expr-card:hover {
+  border-color: rgba(90,140,255,0.45);
+  background: linear-gradient(180deg, #0e1a3a, #080f20);
+  box-shadow:
+    inset 0 0 40px rgba(0,0,0,0.6),
+    0 0 25px rgba(90,140,255,0.15);
+}
+
+/* ===== ICON ===== */
+.icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 22px;
+  background: rgba(255,255,255,0.03);
+}
+
+.expr-card:hover .icon {
+  box-shadow: 0 0 14px currentColor;
+}
+
+/* ICON COLORS */
+.blue { color:#4da3ff; border:1px solid #4da3ff; }
+.purple { color:#c084fc; border:1px solid #c084fc; }
+.green { color:#34d399; border:1px solid #34d399; }
+.orange { color:#fb923c; border:1px solid #fb923c; }
+.violet { color:#8b5cf6; border:1px solid #8b5cf6; }
+.yellow { color:#facc15; border:1px solid #facc15; }
+
+/* ===== TEXT ===== */
+.expr-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.blue-text {
+  color: #4da3ff;
+}
+
+.expr-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b9c3d8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .expr-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .expr-title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .expr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expr-title {
+    font-size: 32px;
+  }
+
+  .expr-card {
+    height: auto;
+  }
+
+  .expr-subtitle {
+    font-size: 14px;
+  }
+}

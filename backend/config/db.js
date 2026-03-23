@@ -1,0 +1,50 @@
+// const mysql = require("mysql2");
+// require("dotenv").config();
+
+// const db = mysql.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
+//   port: process.env.DB_PORT || 3306,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0
+// });
+
+// db.getConnection((err, connection) => {
+//   if (err) {
+//     console.error("❌ FULL Database Error:", err);
+//   } else {
+//     console.log("✅ Connected to MySQL database!");
+//     connection.release();
+//   }
+// });
+
+// module.exports = db;
+
+const mysql = require("mysql2");
+require("dotenv").config();
+
+const db = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "skillorbit_db",
+  port: process.env.DB_PORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
+// Test Connection
+db.getConnection((err, connection) => {
+  if (err) {
+    console.error("❌ Database Connection Failed:", err.message);
+  } else {
+    console.log("✅ MySQL Connected Successfully!");
+    connection.release();
+  }
+});
+
+module.exports = db.promise(); // 🔥 IMPORTANT (use async/await)

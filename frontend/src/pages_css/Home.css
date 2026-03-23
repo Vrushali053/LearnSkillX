@@ -1,0 +1,37 @@
+/* Page background */
+.home {
+  background: #020617; /* page background */
+  min-height: 100vh;
+}
+
+/* Section title */
+.section-title {
+  font-size: 32px;
+  color: #ffffff;
+  text-align: center;
+  margin: 60px 0 30px;
+}
+
+/* Course grid */
+.course-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 0 40px 60px;
+  justify-items: center;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .course-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .course-wrapper {
+    grid-template-columns: 1fr;
+    padding: 0 20px 40px;
+  }
+}

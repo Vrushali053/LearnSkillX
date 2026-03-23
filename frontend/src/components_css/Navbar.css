@@ -1,0 +1,205 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  width: 100%;
+  background-color: #0b132b;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LEFT SIDE ===== */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* ===== LOGO ===== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-title {
+  padding-top: 30px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-top: 1px;
+}
+
+/* ===== DROPDOWN LINKS ===== */
+.courses-wrapper {
+  padding-left: 50px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.courses-link {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.courses-link i {
+  font-size: 14px;
+  color: #4dd0e1;
+}
+
+.courses-link:hover {
+  color: #4dd0e1;
+}
+
+/* ===== DROPDOWN MENU ===== */
+.courses-dropdown {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  min-width: 280px;
+  background-color: #111936;
+  padding: 16px;
+  border-radius: 12px;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.55);
+  animation: fadeDown 0.25s ease;
+  z-index: 2000;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.courses-dropdown a {
+  color: #eaeaea;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.courses-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== RIGHT SIDE ===== */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  background-color: #4dd0e1;
+  color: #0b132b;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-btn:hover {
+  background-color: #26c6da;
+}
+
+
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  font-size: 22px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #0b132b;
+  width: 100%;
+  padding: 20px;
+  list-style: none;
+  gap: 16px;
+}
+
+.mobile-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.mobile-menu a:hover {
+  color: #4dd0e1;
+}
+
+.mobile-menu-open {
+  display: flex;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .courses-wrapper {
+    display: none; /* hide dropdowns near logo on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+  }
+}
