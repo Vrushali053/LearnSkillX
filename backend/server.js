@@ -1,3 +1,54 @@
+// // require("dotenv").config();
+
+// // const express = require("express");
+// // const cors = require("cors");
+// // const db = require("./config/db");
+
+// // const app = express();
+
+// // app.use(cors());
+// // app.use(express.json());
+
+// // app.get("/", (req, res) => {
+// //   res.send("SkillOrbit Backend is Running Successfully!");
+// // });
+
+// // // GET all courses
+// // app.get("/api/courses", (req, res) => {
+// //   db.query("SELECT * FROM courses", (err, results) => {
+// //     if (err) {
+// //       console.error(err);
+// //       res.status(500).send("Database error");
+// //     } else {
+// //       res.json(results);
+// //     }
+// //   });
+// // });
+
+// // // ADD new course
+// // app.post("/api/courses", (req, res) => {
+// //   const { name, duration, fee, description } = req.body;
+
+// //   const sql =
+// //     "INSERT INTO courses (name, duration, fee, description) VALUES (?, ?, ?, ?)";
+
+// //   db.query(sql, [name, duration, fee, description], (err, result) => {
+// //     if (err) {
+// //       console.error(err);
+// //       res.status(500).send("Failed to add course");
+// //     } else {
+// //       res.send("Course added successfully");
+// //     }
+// //   });
+// // });
+
+// // const PORT = process.env.PORT || 5000;
+
+// // app.listen(PORT, function () {
+// //   console.log("Server running on port " + PORT);
+// // });
+
+
 // require("dotenv").config();
 
 // const express = require("express");
@@ -9,39 +60,79 @@
 // app.use(cors());
 // app.use(express.json());
 
+// // ================= HOME ROUTE =================
 // app.get("/", (req, res) => {
 //   res.send("SkillOrbit Backend is Running Successfully!");
 // });
 
+
+// // ================= COURSES API =================
+
 // // GET all courses
-// app.get("/api/courses", (req, res) => {
-//   db.query("SELECT * FROM courses", (err, results) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).send("Database error");
-//     } else {
-//       res.json(results);
-//     }
-//   });
+// app.get("/api/courses", async (req, res) => {
+//   try {
+//     const [results] = await db.execute("SELECT * FROM courses");
+//     res.json(results);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Database error");
+//   }
 // });
 
 // // ADD new course
-// app.post("/api/courses", (req, res) => {
+// app.post("/api/courses", async (req, res) => {
 //   const { name, duration, fee, description } = req.body;
 
-//   const sql =
-//     "INSERT INTO courses (name, duration, fee, description) VALUES (?, ?, ?, ?)";
+//   try {
+//     const sql =
+//       "INSERT INTO courses (name, duration, fee, description) VALUES (?, ?, ?, ?)";
 
-//   db.query(sql, [name, duration, fee, description], (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).send("Failed to add course");
-//     } else {
-//       res.send("Course added successfully");
-//     }
-//   });
+//     await db.execute(sql, [name, duration, fee, description]);
+
+//     res.send("Course added successfully");
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Failed to add course");
+//   }
 // });
 
+
+// // ================= CONTACT API =================
+
+// // POST Contact Form
+// app.post("/api/contact", async (req, res) => {
+//   const { name, email, phone, subject, message } = req.body;
+
+//   try {
+//     const sql = `
+//       INSERT INTO contact_messages (name, email, phone, subject, message)
+//       VALUES (?, ?, ?, ?, ?)
+//     `;
+
+//     await db.execute(sql, [name, email, phone, subject, message]);
+
+//     res.json({ success: true, message: "Message saved successfully" });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ success: false, message: "Database error" });
+//   }
+// });
+
+// // GET all contact messages (Admin)
+// app.get("/api/contact", async (req, res) => {
+//   try {
+//     const [results] = await db.execute(
+//       "SELECT * FROM contact_messages ORDER BY id DESC"
+//     );
+//     res.json(results);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error fetching messages");
+//   }
+// });
+
+
+// // ================= SERVER =================
 // const PORT = process.env.PORT || 5000;
 
 // app.listen(PORT, function () {
@@ -49,24 +140,28 @@
 // });
 
 
+// ==========================================
+// SkillOrbit Backend - server.js
+// ==========================================
+
 require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const db = require("./config/db");
+const db = require("./config/db"); // MySQL2 connection pool
 
 const app = express();
 
+// --------------------- MIDDLEWARE ---------------------
 app.use(cors());
 app.use(express.json());
 
-// ================= HOME ROUTE =================
+// --------------------- HOME ROUTE ---------------------
 app.get("/", (req, res) => {
   res.send("SkillOrbit Backend is Running Successfully!");
 });
 
-
-// ================= COURSES API =================
+// --------------------- COURSES API ---------------------
 
 // GET all courses
 app.get("/api/courses", async (req, res) => {
@@ -74,7 +169,7 @@ app.get("/api/courses", async (req, res) => {
     const [results] = await db.execute("SELECT * FROM courses");
     res.json(results);
   } catch (err) {
-    console.error(err);
+    console.error("Database error:", err);
     res.status(500).send("Database error");
   }
 });
@@ -83,37 +178,40 @@ app.get("/api/courses", async (req, res) => {
 app.post("/api/courses", async (req, res) => {
   const { name, duration, fee, description } = req.body;
 
+  if (!name || !duration || !fee || !description) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
   try {
     const sql =
       "INSERT INTO courses (name, duration, fee, description) VALUES (?, ?, ?, ?)";
-
     await db.execute(sql, [name, duration, fee, description]);
-
-    res.send("Course added successfully");
+    res.json({ success: true, message: "Course added successfully" });
   } catch (err) {
-    console.error(err);
+    console.error("Failed to add course:", err);
     res.status(500).send("Failed to add course");
   }
 });
 
+// --------------------- CONTACT API ---------------------
 
-// ================= CONTACT API =================
-
-// POST Contact Form
+// POST contact form
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: "Name, email, and message required" });
+  }
 
   try {
     const sql = `
       INSERT INTO contact_messages (name, email, phone, subject, message)
       VALUES (?, ?, ?, ?, ?)
     `;
-
-    await db.execute(sql, [name, email, phone, subject, message]);
-
+    await db.execute(sql, [name, email, phone || "", subject || "", message]);
     res.json({ success: true, message: "Message saved successfully" });
   } catch (err) {
-    console.error(err);
+    console.error("Database error:", err);
     res.status(500).json({ success: false, message: "Database error" });
   }
 });
@@ -126,15 +224,19 @@ app.get("/api/contact", async (req, res) => {
     );
     res.json(results);
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching messages:", err);
     res.status(500).send("Error fetching messages");
   }
 });
 
+// --------------------- DEFAULT /api ROUTE ---------------------
+app.get("/api", (req, res) => {
+  res.send("SkillOrbit API is running!");
+});
 
-// ================= SERVER =================
+// --------------------- SERVER ---------------------
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, function () {
-  console.log("Server running on port " + PORT);
+app.listen(PORT, () => {
+  console.log(`SkillOrbit Backend running on port ${PORT}`);
 });
