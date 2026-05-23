@@ -102,7 +102,7 @@ export default function Footer() {
 
           <p className="footer-contact">
             Call: <a href="tel:+917083398545">+91 7083398545 / 7822873120</a><br />
-            Email: <a href="mailto:hello@skillorbit.live">hello@skillorbit.live</a>
+            Email: <a href="mailto:hello@skillorbit.live">hr@learnskillx.info</a>
           </p>
         </div>
 

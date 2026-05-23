@@ -247,7 +247,7 @@ function Contact() {
 
         <div className="contact-info">
           <h2>Contact Information</h2>
-          <p><strong>Email:</strong> hello@skillorbit.live</p>
+          <p><strong>Email:</strong> hr@learnskillx.info</p>
           <p><strong>Phone:</strong> +91 7083398545 / 7822873120</p>
 
           <div className="info-hours">

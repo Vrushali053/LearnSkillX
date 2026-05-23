@@ -148,7 +148,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-const db = require("./config/db"); // MySQL2 connection pool
+const db = require("./config/db");
 
 const app = express();
 
@@ -161,6 +161,11 @@ app.get("/", (req, res) => {
   res.send("SkillOrbit Backend is Running Successfully!");
 });
 
+// --------------------- API TEST ROUTE ---------------------
+app.get("/api", (req, res) => {
+  res.send("SkillOrbit API is running!");
+});
+
 // --------------------- COURSES API ---------------------
 
 // GET all courses
@@ -170,7 +175,7 @@ app.get("/api/courses", async (req, res) => {
     res.json(results);
   } catch (err) {
     console.error("Database error:", err);
-    res.status(500).send("Database error");
+    res.status(500).json({ error: "Database error" });
   }
 });
 
@@ -178,6 +183,7 @@ app.get("/api/courses", async (req, res) => {
 app.post("/api/courses", async (req, res) => {
   const { name, duration, fee, description } = req.body;
 
+  // Validation
   if (!name || !duration || !fee || !description) {
     return res.status(400).json({ error: "All fields are required" });
   }
@@ -185,11 +191,16 @@ app.post("/api/courses", async (req, res) => {
   try {
     const sql =
       "INSERT INTO courses (name, duration, fee, description) VALUES (?, ?, ?, ?)";
+
     await db.execute(sql, [name, duration, fee, description]);
-    res.json({ success: true, message: "Course added successfully" });
+
+    res.status(201).json({
+      success: true,
+      message: "Course added successfully",
+    });
   } catch (err) {
-    console.error("Failed to add course:", err);
-    res.status(500).send("Failed to add course");
+    console.error("Insert error:", err);
+    res.status(500).json({ error: "Failed to add course" });
   }
 });
 
@@ -199,8 +210,11 @@ app.post("/api/courses", async (req, res) => {
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, subject, message } = req.body;
 
+  // Validation
   if (!name || !email || !message) {
-    return res.status(400).json({ error: "Name, email, and message required" });
+    return res
+      .status(400)
+      .json({ error: "Name, email and message are required" });
   }
 
   try {
@@ -208,11 +222,22 @@ app.post("/api/contact", async (req, res) => {
       INSERT INTO contact_messages (name, email, phone, subject, message)
       VALUES (?, ?, ?, ?, ?)
     `;
-    await db.execute(sql, [name, email, phone || "", subject || "", message]);
-    res.json({ success: true, message: "Message saved successfully" });
+
+    await db.execute(sql, [
+      name,
+      email,
+      phone || "",
+      subject || "",
+      message,
+    ]);
+
+    res.status(201).json({
+      success: true,
+      message: "Message saved successfully",
+    });
   } catch (err) {
-    console.error("Database error:", err);
-    res.status(500).json({ success: false, message: "Database error" });
+    console.error("Contact error:", err);
+    res.status(500).json({ error: "Database error" });
   }
 });
 
@@ -224,19 +249,19 @@ app.get("/api/contact", async (req, res) => {
     );
     res.json(results);
   } catch (err) {
-    console.error("Error fetching messages:", err);
-    res.status(500).send("Error fetching messages");
+    console.error("Fetch error:", err);
+    res.status(500).json({ error: "Error fetching messages" });
   }
 });
 
-// --------------------- DEFAULT /api ROUTE ---------------------
-app.get("/api", (req, res) => {
-  res.send("SkillOrbit API is running!");
+// --------------------- 404 HANDLER ---------------------
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
 
 // --------------------- SERVER ---------------------
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`SkillOrbit Backend running on port ${PORT}`);
+  console.log(`🚀 SkillOrbit Backend running on port ${PORT}`);
 });
